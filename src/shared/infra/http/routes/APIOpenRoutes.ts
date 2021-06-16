@@ -1,8 +1,8 @@
-import authRouter from '@modules/User/infra/http/routes/auth.routes';
+import { AuthRouter } from '@modules/User/infra/http/routes/Auth.routes';
 import { Router } from 'express';
 
 const APIOpenRoutes = Router();
 
-APIOpenRoutes.use('/auth', authRouter);
+APIOpenRoutes.use('/auth', AuthRouter);
 
 export { APIOpenRoutes };

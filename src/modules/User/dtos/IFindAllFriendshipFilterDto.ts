@@ -4,13 +4,13 @@ export interface IFindAllFriendshipFilterDto {
   page: number;
   pageSize: number;
   userId: string;
-  findType: EnumFindType;
+  findType: EnumFindFriendshipType;
   status?: EnumStatusFriendship;
   orderName?: string;
   order?: string;
 }
 
-export enum EnumFindType {
+export enum EnumFindFriendshipType {
   ALL = 'ALL',
   REQUESTER = 'REQUESTER',
   REQUESTED = 'REQUESTED',

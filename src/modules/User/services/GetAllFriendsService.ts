@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { EnumFindType } from '../dtos/IFindAllFriendshipFilterDto';
+import { EnumFindFriendshipType } from '../dtos/IFindAllFriendshipFilterDto';
 import { User } from '../infra/typeorm/entities/User';
 import { EnumStatusFriendship } from '../interfaces/EnumStatusFriendship';
 import { IFriendshipRepository } from '../interfaces/IFriendshipRepository';
@@ -17,7 +17,7 @@ export class GetAllFriendsService {
 
   public async execute(id: string): Promise<User[]> {
     const [users, _] = await this.friendshipRepository.findAll({
-      findType: EnumFindType.ALL,
+      findType: EnumFindFriendshipType.ALL,
       page: 0,
       pageSize: 0,
       userId: id,

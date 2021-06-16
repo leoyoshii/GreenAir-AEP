@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 import { AddFriendshipService } from '@modules/User/services/AddFriendService';
 import { ListAllFriendshipService } from '@modules/User/services/ListAllFriendshipService';
 import { EnumStatusFriendship } from '@modules/User/interfaces/EnumStatusFriendship';
-import { EnumFindType } from '@modules/User/dtos/IFindAllFriendshipFilterDto';
+import { EnumFindFriendshipType } from '@modules/User/dtos/IFindAllFriendshipFilterDto';
 import { UpdateStatusFriendshipService } from '@modules/User/services/UpdateStatusFriendshipService';
 
 export class FriendshipController {
@@ -39,7 +39,9 @@ export class FriendshipController {
     const enumStatus: EnumStatusFriendship = (<any>EnumStatusFriendship)[
       String(status)
     ];
-    const enumFindType: EnumFindType = (<any>EnumFindType)[String(findType)];
+    const enumType: EnumFindFriendshipType = (<any>EnumFindFriendshipType)[
+      String(findType)
+    ];
 
     const [friendships, total] = await listAllFriendshipContainer.execute({
       userId: id,
@@ -49,7 +51,7 @@ export class FriendshipController {
         ? { order: String(order), orderName: String(orderName) }
         : {}),
       ...(status ? { status: enumStatus } : {}),
-      findType: enumFindType,
+      findType: enumType,
     });
 
     return response.status(201).json({ friendships, total });

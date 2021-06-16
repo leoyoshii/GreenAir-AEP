@@ -24,7 +24,7 @@ export class SuggestionPhoto {
   photo: string;
 
   @Expose({ name: 'photoUrl' })
-  getAvatarUrl(): string | null {
+  getPhotoUrl(): string | null {
     if (!this.photo) {
       return null;
     }

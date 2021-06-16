@@ -4,7 +4,7 @@ import { ICreateFriendDTO } from '@modules/User/dtos/ICreateFriendDTO';
 import { Friendship } from '../entities/Friendship';
 import { EnumStatusFriendship } from '@modules/User/interfaces/EnumStatusFriendship';
 import {
-  EnumFindType,
+  EnumFindFriendshipType,
   IFindAllFriendshipFilterDto,
 } from '@modules/User/dtos/IFindAllFriendshipFilterDto';
 
@@ -38,12 +38,12 @@ export class FriendshipRepository implements IFriendshipRepository {
       query.andWhere('friendship.status =:status', { status });
     }
 
-    if (findType === EnumFindType.ALL) {
+    if (findType === EnumFindFriendshipType.ALL) {
       query.andWhere('friendship.requesterId =:userId', { userId });
       query.orWhere('friendship.requestedId =:userId', { userId });
-    } else if (findType === EnumFindType.REQUESTED) {
+    } else if (findType === EnumFindFriendshipType.REQUESTED) {
       query.andWhere('friendship.requestedId =:userId', { userId });
-    } else if (findType === EnumFindType.REQUESTER) {
+    } else if (findType === EnumFindFriendshipType.REQUESTER) {
       query.andWhere('friendship.requesterId =:userId', { userId });
     }
 

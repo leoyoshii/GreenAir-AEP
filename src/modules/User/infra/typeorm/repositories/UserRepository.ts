@@ -41,8 +41,6 @@ export class UserRepository implements IUserRepository {
       role,
     });
 
-    console.log(user);
-
     return this.ormRepository.save(user);
   }
 

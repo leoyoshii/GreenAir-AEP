@@ -30,7 +30,9 @@ app.get('/', (req, res) => {
   res.send('API is working. ');
 });
 
-app.use('/files', express.static(uploadConfig.uploadsFolder));
+app.use('/files', express.static(uploadConfig.uploadFolder));
+
+console.log(uploadConfig.uploadFolder);
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   if (err instanceof AppErrors) {
     return response.status(err.statusCode).json({
@@ -41,7 +43,7 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   }
   return response
     .status(500)
-    .json({ status: 'error', massage: err.message, code: 500 });
+    .json({ status: 'error', message: err.message, code: 500, err });
 });
 
 export { app };

@@ -17,6 +17,7 @@ commonUsersRouter.get('/friends', commonUserController.getFriends);
 
 commonUsersRouter.put(
   '/profile',
+  upload.single('avatarFilename'),
   celebrate({
     [Segments.BODY]: {
       areaCodePhone: Joi.string(),
@@ -32,7 +33,6 @@ commonUsersRouter.put(
       state: Joi.string(),
     },
   }),
-  upload.single('avatarFilename'),
   commonUserController.update,
 );
 
