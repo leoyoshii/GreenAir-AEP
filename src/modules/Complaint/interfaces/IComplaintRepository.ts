@@ -7,5 +7,4 @@ export interface IComplaintRepository {
   findById(id: string): Promise<Complaint | undefined>;
   save(data: Complaint): Promise<Complaint>;
   findAll(data: IFindAllComplaintFilterDto): Promise<[Complaint[], number]>;
-  findMy(userid: string): Promise<[Complaint[], number]>;
 }

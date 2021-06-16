@@ -16,6 +16,15 @@ import { IPostPhotoRepository } from '@modules/Post/interfaces/IPostPhotoReposit
 import { PostReactionsRepository } from '@modules/Post/infra/typeorm/repositories/PostReactionsRepository';
 import { IPostReactionsRepository } from '@modules/Post/interfaces/IPostReactionsRepository';
 
+import { ComplaintRepository } from '@modules/Complaint/infra/typeorm/repositories/ComplaintRepository';
+import { IComplaintRepository } from '@modules/Complaint/interfaces/IComplaintRepository';
+import { IComplaintPhotoRepository } from '@modules/Complaint/interfaces/IComplaintPhotoRepository';
+import { ComplaintPhotoRepository } from '@modules/Complaint/infra/typeorm/repositories/ComplaintPhotoRepository';
+import { ISuggestionRepository } from '@modules/Suggestion/interfaces/ISuggestionRepository';
+import { ISuggestionPhotoRepository } from '@modules/Suggestion/interfaces/ISuggestionPhotoRepository';
+import { SuggestionRepository } from '@modules/Suggestion/infra/typeorm/repositories/SuggestionRepository';
+import { SuggestionPhotoRepository } from '@modules/Suggestion/infra/typeorm/repositories/SuggestionPhotoRepository';
+
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository);
 container.registerSingleton<IFriendshipRepository>(
   'FriendshipRepository',
@@ -29,4 +38,24 @@ container.registerSingleton<IPostPhotoRepository>(
 container.registerSingleton<IPostReactionsRepository>(
   'PostReactionsRepository',
   PostReactionsRepository,
+);
+
+container.registerSingleton<IComplaintRepository>(
+  'ComplaintRepository',
+  ComplaintRepository,
+);
+
+container.registerSingleton<IComplaintPhotoRepository>(
+  'ComplaintPhotoRepository',
+  ComplaintPhotoRepository,
+);
+
+container.registerSingleton<ISuggestionRepository>(
+  'SuggestionRepository',
+  SuggestionRepository,
+);
+
+container.registerSingleton<ISuggestionPhotoRepository>(
+  'SuggestionPhotoRepository',
+  SuggestionPhotoRepository,
 );

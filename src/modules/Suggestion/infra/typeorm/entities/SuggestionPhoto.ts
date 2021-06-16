@@ -42,6 +42,6 @@ export class SuggestionPhoto {
 
   // relations
   @ManyToOne(() => Suggestion)
-  @JoinColumn({ name: 'complaint_id' })
+  @JoinColumn({ name: 'suggestion_id' })
   suggestion: Suggestion;
 }

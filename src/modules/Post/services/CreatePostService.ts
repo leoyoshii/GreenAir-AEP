@@ -6,7 +6,7 @@ import { IPostPhotoRepository } from '../interfaces/IPostPhotoRepository';
 import { IPostRepository } from '../interfaces/IPostRepository';
 
 interface ICreatePostServiceDto extends ICreatePostDto {
-  photos: string[];
+  arrayPhotos: string[];
 }
 
 @injectable()
@@ -26,7 +26,7 @@ export class CreatePostService {
     ownerId,
     text,
     title,
-    photos,
+    arrayPhotos,
   }: ICreatePostServiceDto): Promise<Post> {
     const post = await this.postRepository.create({
       ownerId,
@@ -36,7 +36,7 @@ export class CreatePostService {
     });
 
     await Promise.all(
-      photos.map(async item => {
+      arrayPhotos.map(async item => {
         const photoFilename = await this.storageProvider.saveFile(item);
 
         const postPhoto = await this.postPhotoRepository.create({

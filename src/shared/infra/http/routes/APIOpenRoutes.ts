@@ -1,4 +1,4 @@
-import { AuthRouter } from '@modules/User/infra/http/routes/Auth.routes';
+import { AuthRouter } from '@modules/User/infra/http/routes/auth.routes';
 import { Router } from 'express';
 
 const APIOpenRoutes = Router();

@@ -14,7 +14,7 @@ export class CreateTableSuggestion1622777852866 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'requesterId',
+            name: 'requester_id',
             type: 'uuid',
           },
           {
@@ -33,6 +33,17 @@ export class CreateTableSuggestion1622777852866 implements MigrationInterface {
             name: 'description',
             type: 'varchar',
             length: '500',
+          },
+          {
+            name: 'status',
+            type: 'enum',
+            enum: ['PENDING', 'DECLINED', 'INPROGRESS', 'CONCLUDED'],
+            enumName: 'EnumStatusSuggestion',
+          },
+          {
+            name: 'status_reason',
+            type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'post_id',
@@ -60,7 +71,7 @@ export class CreateTableSuggestion1622777852866 implements MigrationInterface {
             name: 'suggestionUserId',
             referencedTableName: 'users',
             referencedColumnNames: ['id'],
-            columnNames: ['requesterId'],
+            columnNames: ['requester_id'],
             onDelete: 'NO ACTION',
             onUpdate: 'CASCADE',
           },

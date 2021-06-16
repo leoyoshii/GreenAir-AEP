@@ -1,3 +1,4 @@
+import { EnumStatusComplaint } from '@modules/Complaint/interfaces/EnumStatusComplaint';
 import { Post } from '@modules/Post/infra/typeorm/entities/Post';
 import { User } from '@modules/User/infra/typeorm/entities/User';
 import {
@@ -12,6 +13,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { ComplaintPhoto } from './ComplaintPhoto';
 
 @Entity('complaints')
 export class Complaint {
@@ -30,6 +32,12 @@ export class Complaint {
   @Column({ type: 'varchar' })
   description: string;
 
+  @Column({ type: 'enum', enum: EnumStatusComplaint })
+  status: EnumStatusComplaint;
+
+  @Column({ type: 'varchar', nullable: true, name: 'status_reason' })
+  statusReason: string;
+
   @Column({ type: 'uuid', name: 'post_id', nullable: true })
   postId: string | null;
 
@@ -43,6 +51,11 @@ export class Complaint {
   deletedAt: Date;
 
   // relations
+  @OneToMany(() => ComplaintPhoto, photo => photo.complaint, {
+    eager: true,
+  })
+  photos: ComplaintPhoto[];
+
   @ManyToOne(() => User, user => user.complaints)
   @JoinColumn({ name: 'requester_id' })
   user: User;

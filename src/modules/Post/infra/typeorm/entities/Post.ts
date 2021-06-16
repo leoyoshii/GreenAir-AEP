@@ -42,7 +42,6 @@ export class Post {
   // relations
   @OneToMany(() => PostPhoto, photo => photo.post, {
     eager: true,
-    cascade: ['soft-remove', 'recover'],
   })
   photos: PostPhoto[];
 
@@ -58,7 +57,6 @@ export class Post {
 
   @OneToMany(() => PostReactions, reaction => reaction.post, {
     eager: true,
-    cascade: ['soft-remove', 'recover'],
   })
   reactions: PostReactions[];
 }

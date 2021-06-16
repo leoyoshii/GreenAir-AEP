@@ -4,5 +4,5 @@ export interface ICreatePostDto {
   ownerId: string;
   title: string;
   text: string;
-  photos: PostPhoto[];
+  photos?: PostPhoto[];
 }

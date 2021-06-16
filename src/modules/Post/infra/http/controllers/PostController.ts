@@ -18,7 +18,7 @@ export class PostController {
 
     const post = await createPostContainer.execute({
       ownerId: id,
-      photos: arrayPhotos.map(item => item.filename),
+      arrayPhotos: arrayPhotos.map(item => item.filename),
       text,
       title,
     });
@@ -100,13 +100,13 @@ export class PostController {
     return response.status(201).json({ reaction });
   }
 
-  public async delete(request: Request, response: Response): Promise<Response> {
-    const { postId } = request.params;
+  // public async delete(request: Request, response: Response): Promise<Response> {
+  //   const { postId } = request.params;
 
-    const deletePostContainer = container.resolve(DeletePostService);
+  //   const deletePostContainer = container.resolve(DeletePostService);
 
-    await deletePostContainer.execute(postId);
+  //   await deletePostContainer.execute(postId);
 
-    return response.status(204).json({ message: 'Post deleted successfully' });
-  }
+  //   return response.status(204).json({ message: 'Post deleted successfully' });
+  // }
 }

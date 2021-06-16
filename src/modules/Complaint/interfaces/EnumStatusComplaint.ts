@@ -1,0 +1,6 @@
+export enum EnumStatusComplaint {
+  PENDING = 'PENDING',
+  DECLINED = 'DECLINED',
+  INPROGRESS = 'INPROGRESS',
+  CONCLUDED = 'CONCLUDED',
+}
