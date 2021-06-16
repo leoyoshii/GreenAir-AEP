@@ -40,6 +40,7 @@ export class CreateTableFriendship1622775928404 implements MigrationInterface {
           {
             name: 'deleted_at',
             type: 'timestamp',
+            isNullable: true,
           },
         ],
         foreignKeys: [

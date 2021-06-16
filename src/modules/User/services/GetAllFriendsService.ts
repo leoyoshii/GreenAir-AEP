@@ -1,10 +1,12 @@
 import { inject, injectable } from 'tsyringe';
+import { EnumFindType } from '../dtos/IFindAllFriendshipFilterDto';
 import { User } from '../infra/typeorm/entities/User';
-import { IFriendshipRepository } from '../IRepositories/IFriendshipRepository';
-import { IUserRepository } from '../IRepositories/IUserRepository';
+import { EnumStatusFriendship } from '../interfaces/EnumStatusFriendship';
+import { IFriendshipRepository } from '../interfaces/IFriendshipRepository';
+import { IUserRepository } from '../interfaces/IUserRepository';
 
 @injectable()
-export default class GetAllFriendsService {
+export class GetAllFriendsService {
   constructor(
     @inject('FriendshipRepository')
     private friendshipRepository: IFriendshipRepository,
@@ -14,18 +16,24 @@ export default class GetAllFriendsService {
   ) {}
 
   public async execute(id: string): Promise<User[]> {
-    const users = await this.friendshipRepository.findAll(id);
+    const [users, _] = await this.friendshipRepository.findAll({
+      findType: EnumFindType.ALL,
+      page: 0,
+      pageSize: 0,
+      userId: id,
+      status: EnumStatusFriendship.ACCEPTED,
+    });
 
     let friends: User[] = [];
     await Promise.all(
       users.map(async item => {
         if (item.requesterId === id) {
-          const friend = await this.userRepository.findOne(item.requestedId);
+          const friend = await this.userRepository.findById(item.requestedId);
           if (friend) {
             friends.push(friend);
           }
         } else {
-          const friend = await this.userRepository.findOne(item.requesterId);
+          const friend = await this.userRepository.findById(item.requesterId);
           if (friend) {
             friends.push(friend);
           }

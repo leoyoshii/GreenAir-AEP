@@ -52,6 +52,7 @@ export class CreateTableComplaint1622777034023 implements MigrationInterface {
           {
             name: 'deleted_at',
             type: 'timestamp',
+            isNullable: true,
           },
         ],
         foreignKeys: [

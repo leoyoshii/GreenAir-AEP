@@ -1,9 +1,9 @@
 import { inject, injectable } from 'tsyringe';
 import { User } from '../infra/typeorm/entities/User';
-import { IUserRepository } from '../IRepositories/IUserRepository';
+import { IUserRepository } from '../interfaces/IUserRepository';
 
 @injectable()
-export default class FindAllUserService {
+export class FindAllUserService {
   constructor(
     @inject('UserRepository')
     private userRepository: IUserRepository,

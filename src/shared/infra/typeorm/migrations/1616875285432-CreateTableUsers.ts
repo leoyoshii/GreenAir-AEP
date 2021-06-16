@@ -74,11 +74,6 @@ export class CreateTableUsers1616875285432 implements MigrationInterface {
             enumName: 'EnumUserRole',
           },
           {
-            name: 'active',
-            type: 'boolean',
-            default: true,
-          },
-          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',
@@ -91,6 +86,7 @@ export class CreateTableUsers1616875285432 implements MigrationInterface {
           {
             name: 'deleted_at',
             type: 'timestamp',
+            isNullable: true,
           },
         ],
       }),

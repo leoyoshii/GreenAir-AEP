@@ -52,6 +52,7 @@ export class CreateTableSuggestion1622777852866 implements MigrationInterface {
           {
             name: 'deleted_at',
             type: 'timestamp',
+            isNullable: true,
           },
         ],
         foreignKeys: [

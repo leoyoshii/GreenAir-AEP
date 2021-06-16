@@ -1,5 +1,5 @@
-import { EnumUserGender } from '@modules/User/IRepositories/EnumUserGender';
-import { EnumUserRole } from '@modules/User/IRepositories/EnumUserRole';
+import { EnumUserGender } from '@modules/User/interfaces/EnumUserGender';
+import { EnumUserRole } from '@modules/User/interfaces/EnumUserRole';
 import { Exclude, Expose } from 'class-transformer';
 import {
   Column,
@@ -64,16 +64,14 @@ export class User {
   @Column({ type: 'varchar', name: 'other_gender', nullable: true })
   otherGender: string;
 
+  @Exclude()
   @Column({ type: 'enum', enum: EnumUserRole })
   role: EnumUserRole;
-
-  @Column({ type: 'boolean', default: true })
-  active: boolean;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn({ name: 'update_at' })
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
   @DeleteDateColumn({ name: 'deleted_at' })
