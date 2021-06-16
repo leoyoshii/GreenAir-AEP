@@ -18,6 +18,17 @@ suggestionRouter.post(
       description: Joi.string().required(),
       positionLat: Joi.number().precision(10).required(),
       positionLng: Joi.number().precision(11).required(),
+      hasPost: Joi.boolean().default(false),
+      postText: Joi.alternatives().conditional('hasPost', {
+        is: true,
+        then: Joi.string().required(),
+        otherwise: Joi.string(),
+      }),
+      postTitle: Joi.alternatives().conditional('hasPost', {
+        is: true,
+        then: Joi.string().required(),
+        otherwise: Joi.string(),
+      }),
     },
   }),
   suggestionController.create,

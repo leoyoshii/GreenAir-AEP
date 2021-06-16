@@ -5,5 +5,6 @@ export interface ICreateSuggestionDto {
   positionLat: number;
   positionLng: number;
   description: string;
+  postId?: string;
   photos?: SuggestionPhoto[];
 }

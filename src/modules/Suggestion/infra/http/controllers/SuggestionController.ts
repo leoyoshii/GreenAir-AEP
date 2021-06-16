@@ -4,26 +4,65 @@ import { classToPlain } from 'class-transformer';
 import { CreateSuggestionService } from '@modules/Suggestion/services/CreateSuggestionService';
 import { UpdateStatusSuggestionService } from '@modules/Suggestion/services/UpdateStatusSuggestionService';
 import { ListAllSuggestionService } from '@modules/Suggestion/services/ListAllSuggestionService';
+import { CreatePostService } from '@modules/Post/services/CreatePostService';
 
 export class SuggestionController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { id } = request.user;
-    const { description, positionLat, positionLng } = request.body;
-    const arrayPhotos = request.files as Express.Multer.File[];
-
-    const createSuggestionContainer = container.resolve(
-      CreateSuggestionService,
-    );
-
-    const suggestion = await createSuggestionContainer.execute({
+    const {
       description,
       positionLat,
       positionLng,
-      requesterId: id,
-      arrayPhotos: arrayPhotos.map(item => item.filename),
-    });
+      postText,
+      postTitle,
+      hasPost,
+    } = request.body;
+    const arrayPhotos = request.files as Express.Multer.File[];
 
-    return response.status(201).json({ suggestion: classToPlain(suggestion) });
+    if (hasPost) {
+      const createPostContainer = container.resolve(CreatePostService);
+
+      await createPostContainer
+        .execute({
+          ownerId: id,
+          arrayPhotos: arrayPhotos.map(item => item.filename),
+          text: postText,
+          title: postTitle,
+        })
+
+        .then(async post => {
+          const createSuggestionContainer = container.resolve(
+            CreateSuggestionService,
+          );
+
+          const complaint = await createSuggestionContainer.execute({
+            description,
+            positionLat,
+            positionLng,
+            requesterId: id,
+            postId: post.id,
+            arrayPhotos: [],
+          });
+
+          return response
+            .status(201)
+            .json({ complaint: classToPlain(complaint), post });
+        });
+    } else {
+      const createSuggestionContainer = container.resolve(
+        CreateSuggestionService,
+      );
+
+      const complaint = await createSuggestionContainer.execute({
+        description,
+        positionLat,
+        positionLng,
+        requesterId: id,
+        arrayPhotos: arrayPhotos.map(item => item.filename),
+      });
+
+      return response.status(201).json({ complaint: classToPlain(complaint) });
+    }
   }
 
   public async updateStatus(

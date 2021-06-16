@@ -16,6 +16,7 @@ export class SuggestionRepository implements ISuggestionRepository {
     positionLat,
     positionLng,
     requesterId,
+    postId,
     photos,
   }: ICreateSuggestionDto): Promise<Suggestion> {
     const suggestion = this.ormRepository.create({
@@ -23,6 +24,7 @@ export class SuggestionRepository implements ISuggestionRepository {
       positionLat,
       positionLng,
       requesterId,
+      postId,
       photos,
       status: EnumStatusSuggestion.PENDING,
     });

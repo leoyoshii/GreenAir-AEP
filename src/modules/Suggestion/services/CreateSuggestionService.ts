@@ -27,6 +27,7 @@ export class CreateSuggestionService {
     positionLat,
     positionLng,
     requesterId,
+    postId,
     arrayPhotos,
   }: ICreateSuggestionServiceDto): Promise<Suggestion> {
     const suggestion = await this.suggestionRepository.create({
@@ -34,6 +35,7 @@ export class CreateSuggestionService {
       positionLat,
       positionLng,
       requesterId,
+      postId,
       photos: [],
     });
 

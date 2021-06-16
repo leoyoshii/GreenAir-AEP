@@ -7,7 +7,7 @@ const masterUsersRouter = Router();
 const masterUserController = new MasterUserController();
 
 masterUsersRouter.post(
-  '/create',
+  '/',
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
@@ -22,6 +22,17 @@ masterUsersRouter.post(
     },
   }),
   masterUserController.create,
+);
+
+masterUsersRouter.get(
+  '/',
+  celebrate({
+    [Segments.QUERY]: {
+      page: Joi.number().required(),
+      pageSize: Joi.number().default(10),
+    },
+  }),
+  masterUserController.findAll,
 );
 
 export { masterUsersRouter };

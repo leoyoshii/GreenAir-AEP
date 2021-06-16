@@ -1,4 +1,5 @@
 import { ICreateUserDto } from '@modules/User/dtos/ICreateUserDto';
+import { IFindAllUsersFilterDto } from '@modules/User/dtos/IFindAllUsersFilterDto';
 import { IUserRepository } from '@modules/User/interfaces/IUserRepository';
 import { getRepository, Repository } from 'typeorm';
 import { User } from '../entities/User';
@@ -18,8 +19,14 @@ export class UserRepository implements IUserRepository {
     return user;
   }
 
-  public async findAll(): Promise<[User[], number]> {
-    const [users, total] = await this.ormRepository.findAndCount();
+  public async findAll({
+    page,
+    pageSize,
+  }: IFindAllUsersFilterDto): Promise<[User[], number]> {
+    const [users, total] = await this.ormRepository.findAndCount({
+      skip: page * pageSize,
+      take: pageSize,
+    });
 
     return [users, total];
   }

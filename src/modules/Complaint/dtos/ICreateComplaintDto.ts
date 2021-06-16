@@ -5,5 +5,6 @@ export interface ICreateComplaintDto {
   positionLat: number;
   positionLng: number;
   description: string;
+  postId?: string;
   photos?: ComplaintPhoto[];
 }

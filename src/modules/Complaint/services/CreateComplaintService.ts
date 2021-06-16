@@ -27,6 +27,7 @@ export class CreateComplaintService {
     positionLat,
     positionLng,
     requesterId,
+    postId,
     arrayPhotos,
   }: ICreateComplaintServiceDto): Promise<Complaint> {
     const complaint = await this.complaintRepository.create({
@@ -34,6 +35,7 @@ export class CreateComplaintService {
       positionLat,
       positionLng,
       requesterId,
+      postId,
       photos: [],
     });
 

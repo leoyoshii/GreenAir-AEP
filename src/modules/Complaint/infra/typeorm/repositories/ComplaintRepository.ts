@@ -16,6 +16,7 @@ export class ComplaintRepository implements IComplaintRepository {
     positionLat,
     positionLng,
     requesterId,
+    postId,
     photos,
   }: ICreateComplaintDto): Promise<Complaint> {
     const complaint = this.ormRepository.create({
@@ -24,6 +25,7 @@ export class ComplaintRepository implements IComplaintRepository {
       positionLng,
       requesterId,
       photos,
+      postId,
       status: EnumStatusComplaint.PENDING,
     });
     return this.ormRepository.save(complaint);

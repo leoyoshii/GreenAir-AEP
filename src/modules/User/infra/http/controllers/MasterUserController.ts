@@ -6,6 +6,7 @@ import { CreateUserService } from '@modules/User/services/CreateUserService';
 import { FindAllUserService } from '@modules/User/services/FindAllUserService';
 import { AddFriendshipService } from '@modules/User/services/AddFriendService';
 import { GetAllFriendsService } from '@modules/User/services/GetAllFriendsService';
+import { classToPlain } from 'class-transformer';
 
 export class MasterUserController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -38,39 +39,14 @@ export class MasterUserController {
     request: Request,
     response: Response,
   ): Promise<Response> {
+    const { page, pageSize } = request.query;
     const findAllUserContainer = container.resolve(FindAllUserService);
 
-    const users = await findAllUserContainer.execute();
-
-    return response.status(201).json({ users });
-  }
-
-  public async addfriend(
-    request: Request,
-    response: Response,
-  ): Promise<Response> {
-    const { requesterId, requestedId } = request.body;
-
-    const addFriendshipContainer = container.resolve(AddFriendshipService);
-
-    const friend = await addFriendshipContainer.execute({
-      requesterId,
-      requestedId,
+    const [users, total] = await findAllUserContainer.execute({
+      page: Number(page),
+      pageSize: Number(pageSize),
     });
 
-    return response.status(201).json({ friend });
-  }
-
-  public async getfriends(
-    request: Request,
-    response: Response,
-  ): Promise<Response> {
-    const { id } = request.params;
-
-    const getAllFriendsContainer = container.resolve(GetAllFriendsService);
-
-    const friends = await getAllFriendsContainer.execute(id);
-
-    return response.status(201).json({ friends });
+    return response.status(201).json({ users: classToPlain(users), total });
   }
 }
