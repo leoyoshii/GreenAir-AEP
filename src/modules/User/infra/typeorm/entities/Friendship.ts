@@ -1,4 +1,4 @@
-import { EnumStatusFriendship } from '@modules/User/IRepositories/EnumStatusFriendship';
+import { EnumStatusFriendship } from '@modules/User/interfaces/EnumStatusFriendship';
 
 import {
   Column,
@@ -29,7 +29,7 @@ export class Friendship {
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn({ name: 'update_at' })
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
   @DeleteDateColumn({ name: 'deleted_at' })

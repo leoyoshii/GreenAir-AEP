@@ -36,6 +36,7 @@ export class CreateTableSuggestionPhotos1622778041439
           {
             name: 'deleted_at',
             type: 'timestamp',
+            isNullable: true,
           },
         ],
         foreignKeys: [

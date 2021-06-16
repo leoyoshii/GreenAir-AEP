@@ -24,7 +24,7 @@ export class SuggestionPhoto {
   photo: string;
 
   @Expose({ name: 'photoUrl' })
-  getAvatarUrl(): string | null {
+  getPhotoUrl(): string | null {
     if (!this.photo) {
       return null;
     }
@@ -34,7 +34,7 @@ export class SuggestionPhoto {
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn({ name: 'update_at' })
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
   @DeleteDateColumn({ name: 'deleted_at' })
@@ -42,6 +42,6 @@ export class SuggestionPhoto {
 
   // relations
   @ManyToOne(() => Suggestion)
-  @JoinColumn({ name: 'complaint_id' })
+  @JoinColumn({ name: 'suggestion_id' })
   suggestion: Suggestion;
 }

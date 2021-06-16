@@ -33,15 +33,17 @@ export class Post {
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn({ name: 'update_at' })
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: Date;
 
   // relations
-  @OneToMany(() => PostPhoto, photo => photo.post)
-  photos: PostPhoto;
+  @OneToMany(() => PostPhoto, photo => photo.post, {
+    eager: true,
+  })
+  photos: PostPhoto[];
 
   @ManyToOne(() => User, user => user.posts)
   @JoinColumn({ name: 'owner_id' })
@@ -53,6 +55,8 @@ export class Post {
   @OneToOne(() => Suggestion, suggestion => suggestion.post)
   suggestion: Suggestion | null;
 
-  @OneToMany(() => PostReactions, reaction => reaction.post)
+  @OneToMany(() => PostReactions, reaction => reaction.post, {
+    eager: true,
+  })
   reactions: PostReactions[];
 }

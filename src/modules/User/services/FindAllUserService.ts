@@ -1,17 +1,24 @@
 import { inject, injectable } from 'tsyringe';
+import { IFindAllUsersFilterDto } from '../dtos/IFindAllUsersFilterDto';
 import { User } from '../infra/typeorm/entities/User';
-import { IUserRepository } from '../IRepositories/IUserRepository';
+import { IUserRepository } from '../interfaces/IUserRepository';
 
 @injectable()
-export default class FindAllUserService {
+export class FindAllUserService {
   constructor(
     @inject('UserRepository')
     private userRepository: IUserRepository,
   ) {}
 
-  public async execute(): Promise<User[]> {
-    const users = await this.userRepository.findAll();
+  public async execute({
+    page,
+    pageSize,
+  }: IFindAllUsersFilterDto): Promise<[User[], number]> {
+    const [users, total] = await this.userRepository.findAll({
+      page,
+      pageSize,
+    });
 
-    return users;
+    return [users, total];
   }
 }

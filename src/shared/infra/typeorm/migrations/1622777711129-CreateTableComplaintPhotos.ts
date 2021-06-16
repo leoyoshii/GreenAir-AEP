@@ -36,6 +36,7 @@ export class CreateTableComplaintPhotos1622777711129
           {
             name: 'deleted_at',
             type: 'timestamp',
+            isNullable: true,
           },
         ],
         foreignKeys: [

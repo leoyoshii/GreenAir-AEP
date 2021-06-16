@@ -49,6 +49,7 @@ export class CreateTablePostReactions1622776791657
           {
             name: 'deleted_at',
             type: 'timestamp',
+            isNullable: true,
           },
         ],
         foreignKeys: [

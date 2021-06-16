@@ -34,6 +34,7 @@ export class CreateTablePostPhotos1622776688653 implements MigrationInterface {
           {
             name: 'deleted_at',
             type: 'timestamp',
+            isNullable: true,
           },
         ],
         foreignKeys: [

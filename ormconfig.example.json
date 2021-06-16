@@ -5,8 +5,7 @@
   "port": "5432",
   "username": "postgres",
   "password": "postgres",
-  "database": "parque",
-
+  "database": "greenair",
   "entities": ["./src/modules/**/infra/typeorm/entities/*.ts"],
   "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
   "cli": {
