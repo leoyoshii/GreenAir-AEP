@@ -1,6 +1,6 @@
-<h1 align="center">
-    <img alt="Green Air" title="Green Air" src="./assets/logo.png"  width='300px'/>
-</h1>
+<p align="center">
+    <img alt="Green Air" title="Green Air" src="./assets/logo.png"  width='250' height='250'/>
+</p>
 <h1 align="center">GreenAir 🌳</h1>
 <p align="center">
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/leoyoshii/GreenAir-AEP-ADSIS5S-N-A">
@@ -17,8 +17,10 @@
   </a>
 </p>
 
-<details open="open">
+
+   <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+ 
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
@@ -45,9 +47,9 @@
 
 ## About The Project
 
-<h1 align="center">
+<p align="center">
     <img alt="Green Air" title="Green Air" src="./assets/EveryRun.jpg" />
-</h1>
+</p>
 
 GreenAir consists of an application that focuses on environmental education in the city of Maringá, PR - Brazil
 
