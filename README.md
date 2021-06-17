@@ -74,9 +74,9 @@ O layout da aplicação está disponível no Marvel:
 
 ### Prerequisites
 
-Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+Before starting, you will need to have the following tools installed on your machine:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [PostgreSQL](https://www.postgresql.org/).
-Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+Also it's nice to have an editor to work with the code like [VSCode](https://code.visualstudio.com/)
 
 ### Installation
 
